@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>URL Rewrite options</title>
+
+<style>
+	body {
+		font-family: sans-serif;
+		font-size: 14px;
+		max-width: 900px;
+	}
+
+	.mappings {
+		margin-top: 20px;
+	}
+
+	.mappings th {
+		font-weight: normal;
+	}
+
+	.mappings input {
+		border: none;
+		border-bottom: 1px solid #bbb;
+		font-size: 12px;
+		width: 400px;
+		padding: 3px;
+	}
+
+	.mappings input:focus {
+		outline: none;
+		border-bottom: 1px solid #888;
+	}
+
+	.mappings .remove {
+		border: none;
+		background-color: #eee;
+		cursor: pointer;
+		text-transform: lowercase;
+		border-radius: 3px;
+	}
+
+	.mappings .remove:hover {
+		background-color: #ddd;
+	}
+
+	.instructions {
+		margin-top: 30px;
+	}
+
+	.instructions li {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+</style>
+
+<body ng-app="urlrewrite-options" ng-controller="OptionsCtrl">
+
+<table class="mappings">
+	<tr>
+		<th>Source URL</th>
+		<th></th>
+		<th>Destination URL</th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="mapping in mappings">
+		<td>
+			<input placeholder="http://"
+			       ng-model="mapping.sourceUrl">
+		</td>
+		<td>→</td>
+		<td>
+			<input placeholder="http://"
+			       ng-model="mapping.destinationUrl">
+		</td>
+		<td>
+			<button class="remove"
+			        ng-if="mapping != lastMapping()"
+			        ng-click="removeAt($index)">
+				Remove
+			</button>
+		</td>
+	</tr>
+</table>
+
+<ol class="instructions">
+	<li>In Source URL, enter the URL that should be rewritten, e.g. <code>http://jira.example.com/</code></li>
+	<li>In Destination URL, enter the URL that should replace the Source URL, e.g. <code>http://example.myvpn.com/jira/</code></li>
+	<li>Now, any link that begins with Source URL will have that replaced with Destination URL. In the example above, <code>http://jira.example.com/PROJ-123</code> would be rewritten to <code>http://example.myvpn.com/jira/PROJ-123</code></li>
+</ol>
+
+<script src="angular.min.js"></script>
+<script src="options.js"></script>

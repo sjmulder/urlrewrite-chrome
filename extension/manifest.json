@@ -1,0 +1,18 @@
+{
+	"manifest_version": 2,
+	
+	"name": "URL Rewrite",
+	"description": "An extension that lets you redirect Chrome for specific URLs",
+	"version": "1.0",
+
+	"options_page": "options.html",
+
+	"permissions": [
+		"webNavigation"
+	],
+
+	"background": {
+		"scripts": ["background.js"]
+	}
+
+}
